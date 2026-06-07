@@ -1,0 +1,25 @@
+# Data and models
+data/raw/*
+!data/raw/customer_support_tickets_200k.csv
+data/processed/*
+!data/processed/.gitkeep
+models/*
+!models/.gitkeep
+
+# Outputs and reports
+outputs/*
+!outputs/.gitkeep
+reports/figures/*
+!reports/figures/.gitkeep
+
+# Python caches and environments
+__pycache__/
+*.py[cod]
+*$py.class
+.ipynb_checkpoints/
+.pytest_cache/
+.vscode/
+venv/
+.venv/
+env/
+.env
