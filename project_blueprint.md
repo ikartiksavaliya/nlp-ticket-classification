@@ -434,42 +434,43 @@ Translate F1-scores into business impact metrics:
 ## 9. Phase Deliverables Checklist
 
 ### Phase 1: Problem Formulation & EDA
-- [ ] Columns loaded and verified
-- [ ] Missing values analyzed
-- [ ] Category frequency plotted for class imbalance
-- [ ] Sentence and character distributions reviewed
+- [x] Columns loaded and verified
+- [x] Missing values analyzed
+- [x] Category frequency plotted for class imbalance
+- [x] Sentence and character distributions reviewed
 
 ### Phase 2: Preprocessing
-- [ ] Accent strings normalized with Unicode NFKD
-- [ ] Numbers and punctuation stripped
-- [ ] Emojis, URLs, emails, and mentions masked or handled
-- [ ] Spelling variations standardized
-- [ ] Stemming vs Lemmatization compared on sample tokens
-- [ ] `pytest tests/test_preprocessing.py` executes successfully
+- [x] Accent strings normalized with Unicode NFKD
+- [x] Numbers and punctuation stripped
+- [x] Emojis, URLs, emails, and mentions masked or handled
+- [x] Spelling variations standardized
+- [x] Stemming vs Lemmatization compared on sample tokens
+- [x] `pytest tests/test_preprocessing.py` executes successfully
 
 ### Phase 3: Text Representation
-- [ ] CountVectorizer, TfidfVectorizer, and HashingVectorizer pipelines created
-- [ ] Sparsity statistics evaluated
-- [ ] Memory footprint metrics compared
-- [ ] `pytest tests/test_feature_engineering.py` executes successfully
+- [x] CountVectorizer, TfidfVectorizer, and HashingVectorizer pipelines created
+- [x] Sparsity statistics evaluated
+- [x] Memory footprint metrics compared
+- [x] `pytest tests/test_feature_engineering.py` executes successfully
 
 ### Phase 4: Modeling
-- [ ] Train/Val/Test splits executed
-- [ ] Vectorizer fit only on training split
-- [ ] Baselines established using Naive Bayes
-- [ ] Hyperparameter grids searched using GridSearchCV and K-fold CV
-- [ ] Best model saved to `models/`
+- [x] Train/Val/Test splits executed
+- [x] Vectorizer fit only on training split
+- [x] Baselines established using Naive Bayes
+- [x] Hyperparameter grids searched using GridSearchCV and K-fold CV
+- [x] Best model saved to `models/`
 
 ### Phase 5: Evaluation
-- [ ] Classification report calculated on test split
-- [ ] Confusion matrix heatmap generated
-- [ ] ROC/PR curves plotted
-- [ ] Misclassified tickets logged to `outputs/misclassified_tickets.csv`
-- [ ] Business impact metric calculations compiled
+- [x] Classification report calculated on test split
+- [x] Confusion matrix heatmap generated
+- [x] ROC/PR curves plotted
+- [x] Misclassified tickets logged to `outputs/misclassified_tickets.csv`
+- [x] Business impact metric calculations compiled
 
 ### Phase 6 & 7: Inference & Deployment App
-- [ ] `TicketInferencePipeline` class built and tested
-- [ ] Out-of-vocabulary (OOV) logic integrated
-- [ ] `pytest tests/test_inference.py` executes successfully
-- [ ] Streamlit interface built in `app/app.py`
-- [ ] Portfolio README.md created
+- [x] `TicketInferencePipeline` class built and tested
+- [x] Out-of-vocabulary (OOV) logic integrated
+- [x] `pytest tests/test_inference.py` executes successfully
+- [x] Streamlit interface built in `app/app.py`
+- [x] Portfolio README.md created
+
