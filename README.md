@@ -1,45 +1,86 @@
-# Customer Support Ticket Classification using Traditional NLP and Machine Learning
+# 🎫 Customer Support Ticket Classification System
 
-This repository hosts a portfolio-grade, end-to-end Machine Learning and Natural Language Processing project designed to automatically classify customer support tickets into issues and departments.
+An end-to-end, production-grade Machine Learning and Natural Language Processing (NLP) pipeline designed to automatically classify customer support tickets into issue categories and departments.
 
-## 🚀 Project Overview
+This repository demonstrates rigorous preprocessing, feature engineering, multi-model optimization, data leakage prevention, OOV diagnostics, and deployment-ready architecture.
 
-The core objective is to take raw, unstructured support tickets and categorize them with high precision. The system is designed using a modular engineering architecture, demonstrating robust text preprocessing, advanced text representation techniques, traditional machine learning models, systematic validation pipelines, and a production-grade inference engine.
+---
+
+## 🚀 Key Features
+
+- **19-Stage Preprocessing Pipeline (`src/preprocessing.py`)**: Features Unicode normalization, contraction expansions, email/URL/mention masking, emoji translation, character-level repetition collapsing, and POS-aware lemmatization via SpaCy.
+- **Advanced Representation Analysis (`src/feature_engineering.py`)**: Implements Bag-of-Words, Binary vectors, TF-IDF, and Hashing Trick options, comparing sparsity and memory footprints.
+- **Robust Model Selection (`src/train.py`)**: Leverages Stratified K-Fold Cross Validation and GridSearchCV across four estimators (Naive Bayes, Logistic Regression, SVMs, and XGBoost) with GPU acceleration (cuML) and automatic CPU fallbacks.
+- **Strict Leakage Prevention**: Data splits are executed before vectorizer fitting or label encoding, ensuring zero validation/test set information leaks into the training pipeline.
+- **Inference Diagnostics (`src/inference.py`)**: A production-grade inference wrapper containing real-time Out-Of-Vocabulary (OOV) tracking to monitor vocabulary drift.
+- **Recruiter-Ready Web App (`app/app.py`)**: A Streamlit interface displaying confidence distributions, OOV word diagnostics, and step-by-step text transformation walkthroughs.
+
+---
 
 ## 📂 Repository Structure
 
-The project follows a standard professional data science folder hierarchy:
+The project follows standard professional machine learning software engineering standards:
 
-*   📂 **`data/`**: Version-controlled partitions of the dataset (`raw/` and `processed/`).
-*   📂 **`notebooks/`**: Phase-by-phase prototyping notebooks (exploratory analysis, cleaning, representations, modeling, evaluation).
-*   📂 **`src/`**: Modularized, production-ready source code (config, preprocessing, features, training, evaluation, inference, utils).
-*   📂 **`models/`**: Serialized model binaries, vectorizers, and encoder configurations.
-*   📂 **`reports/`**: Generated performance figures (confusion matrices, ROC/PR curves).
-*   📂 **`outputs/`**: Logs and lists of misclassified tickets for error auditing.
-*   📂 **`tests/`**: Unit test suite targeting preprocessing, feature pipelines, and inference.
-*   📂 **`app/`**: A Streamlit application showing the pipeline in action.
+*   📂 **`data/`**: Cleanly partitioned data splits (`raw/` and cache-ready `processed/`).
+*   📂 **`notebooks/`**: Numbered, interactive prototyping notebooks (Phase 1 to Phase 5).
+*   📂 **`src/`**: Modular source code modules (config, preprocessing, features, training, evaluation, inference, utils).
+*   📂 **`models/`**: Serialized champion model, vectorizer, and label encoder.
+*   📂 **`reports/`**: Classification reports and performance charts.
+*   📂 **`outputs/`**: Log files (`pipeline.log`) and structured misclassified ticket lists for error auditing.
+*   📂 **`tests/`**: Unit and integration test suites containing 27 passing tests.
+*   📂 **`app/`**: Streamlit interactive deployment dashboard.
 
-## 🗺️ Execution Blueprint
+---
 
-For a detailed walkthrough of the project planning, modular architecture, concept-to-code mapping, and delivery milestones, please refer to the master blueprint:
-👉 **[project_blueprint.md](file:///home/ikartiksavaliya/Desktop/Portfolio%20projects/nlp/project_blueprint.md)**
+## 📈 Performance & Results
 
-## ⚙️ Setting Up the Environment
+The training pipeline automatically tunes models and selects the champion based on the macro F1-score:
 
-1.  **Clone this Repository**
-2.  **Create a Virtual Environment:**
-    ```bash
-    python3 -m venv venv
-    source venv/bin/activate
-    ```
-3.  **Install Dependencies:**
-    ```bash
-    pip install -r requirements.txt
-    ```
-4.  **Verify Setup with pytest:**
-    ```bash
-    pytest tests/
-    ```
+| Model Type | Optimization Method | Metrics Monitored |
+| :--- | :--- | :--- |
+| **Multinomial Naive Bayes** | Baseline | Validation Macro F1 |
+| **Logistic Regression** | GridSearchCV (3-Fold Stratified CV) | Hyperparameters (`C`, `penalty`) |
+| **Support Vector Classifier (SVC)** | GridSearchCV (3-Fold Stratified CV) | Kernels (`linear`, `rbf`) |
+| **XGBoost Classifier** | GridSearchCV (3-Fold Stratified CV) | Depth and Learning Rate |
 
-## 📋 Syllabus Concept Coverage Map
-Every key NLP topic—including text normalization, Unicode cleaning, entity masking, emoji translation, stemming vs lemmatization, Bag of Words, TF-IDF, the Hashing Trick, model cross-validation, OOV analysis, and data leakage prevention—is covered in this project. See the full breakdown in [project_blueprint.md](file:///home/ikartiksavaliya/Desktop/Portfolio%20projects/nlp/project_blueprint.md#5-nlp-concept-mapping-matrix).
+Error analysis is logged to [outputs/misclassified_tickets.csv](file:///home/ikartiksavaliya/Desktop/Portfolio%20projects/nlp/outputs/misclassified_tickets.csv) sorted by model prediction confidence, allowing you to audit the most confident errors for target label ambiguity.
+
+---
+
+## 💼 Business Value Metrics
+
+1. **Automated Zero-Touch Routing**: Support tickets classified with $>90\%$ confidence are routed directly to the corresponding department, eliminating manual human triaging.
+2. **Reduced Average Handling Time (AHT)**: Predicting the category and displaying the parsed entities inside the agent dashboard saves support reps valuable triage time.
+3. **Vocabulary Shift Alerting**: Real-time OOV ratio tracking flags when customers begin using new keywords (e.g., new bugs, billing issues), alerting the product team to emerging outages.
+
+---
+
+## ⚙️ Quick Start
+
+### 1. Set Up Environment & Install Dependencies
+```bash
+python3 -m venv .venv
+source .venv/bin/activate
+pip install -r requirements.txt
+```
+
+### 2. Verify with Pytest
+```bash
+.venv/bin/pytest
+```
+
+### 3. Run the Training & Evaluation Pipeline
+```bash
+python src/train.py
+python src/evaluate.py
+```
+
+### 4. Run the Streamlit Dashboard
+```bash
+streamlit run app/app.py
+```
+
+---
+
+## 🗺️ Project Blueprint
+For a step-by-step breakdown of concepts, folder details, and syllabus mappings, refer to [project_blueprint.md](file:///home/ikartiksavaliya/Desktop/Portfolio%20projects/nlp/project_blueprint.md).
