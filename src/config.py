@@ -30,6 +30,8 @@ SPACY_MODEL = "en_core_web_sm"
 RANDOM_STATE = 42
 TEST_SIZE = 0.15
 VAL_SIZE = 0.15
+SAMPLE_SIZE = 50000
+
 
 
 # Text Representation Configuration
@@ -46,7 +48,7 @@ HYPERPARAMETER_GRIDS = {
     "logistic_regression": {
         "C": [0.1, 1.0, 10.0],
         "penalty": ["l2"],
-        "solver": ["lbfgs"],
+        "solver": ["qn"],
         "max_iter": [1000]
     },
     "svm": {
